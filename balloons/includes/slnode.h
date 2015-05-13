@@ -1,5 +1,5 @@
-#ifndef _SLLIST_H_
-# define _SLLIST_H_
+#ifndef _SLNODE_H_
+# define _SLNODE_H_
 
 template<typename DataType>
 class SLNode
@@ -26,4 +26,4 @@ public:
 	SLNode		*GetNext();
 };
 
-#endif //_SLLIST_H_
+#endif //_SLNODE_H_
