@@ -2,7 +2,7 @@
 # define _SORTEDSLLIST_H_
 
 /* Local includes */
-#include "slnode.h"
+#include "SLNode.h"
 
 template <typename DataType>
 class SortedSLList
