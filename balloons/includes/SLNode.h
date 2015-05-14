@@ -1,8 +1,6 @@
 #ifndef _SLNODE_H_
 # define _SLNODE_H_
 
-# include <iostream>
-
 template<typename DataType>
 class SLNode
 {

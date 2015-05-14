@@ -12,13 +12,16 @@ private:
 	DataType	*back;
 	int			size;
 public:
+	/* Constructors */
 	SortedSLList();
 	SortedSLList(const DataType& object);
+	/* Destructors */
 	~SortedSLList();
-
+	/* Getters */
 	DataType GetFront();
 	DataType GetBack();
 	DataType GetAtIndex(const int& Index);
+	/* Methods */
 	void Add();
 	void RemoveFront();
 	void RemoveBack();
