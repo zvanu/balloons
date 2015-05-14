@@ -7,3 +7,9 @@ SLList<DataType>::SLList()
 	this->head = NULL;
 	this->listSize = 0;
 }
+
+template<typename DataType>
+SLList<DataType>::~SLList()
+{
+	;
+}
