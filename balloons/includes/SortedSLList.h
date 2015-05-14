@@ -1,32 +1,43 @@
 #ifndef _SORTEDSLLIST_H_
 # define _SORTEDSLLIST_H_
 
-/* Local includes */
-#include "SLNode.h"
-
-template <typename DataType>
+template <typename DataType> 
 class SortedSLList
 {
 private:
-	DataType	*front;
-	DataType	*back;
-	int			size;
+	/* ---------------------------------------------------------------------------------- */
+	/* - SLNode class ------------------------------------------------------------------- */
+	/* ---------------------------------------------------------------------------------- */
+	class SLNode
+	{
+	private:
+		DataType	data;
+		SLNode		*next;
+
+	public:
+		SLNode();
+		SLNode(const SLNode& Node);
+		~SLNode();
+		SLNode& operator=(const SLNode& Node);
+	};
+	/* ---------------------------------------------------------------------------------- */
+	/* - END ---------------------------------------------------------------------------- */
+	/* ---------------------------------------------------------------------------------- */
+	SLNode	*front;
+	SLNode	*back;
+	int		size;
+
 public:
-	/* Constructors */
 	SortedSLList();
-	SortedSLList(const DataType& object);
-	/* Destructors */
+	SortedSLList(const DataType& Data);
 	~SortedSLList();
-	/* Getters */
 	DataType GetFront();
 	DataType GetBack();
 	DataType GetAtIndex(const int& Index);
-	/* Methods */
 	void Add();
 	void RemoveFront();
 	void RemoveBack();
 	void RemoveAtIndex(const int& Index);
-	int GetIndexOfObject(const DataType& Object);
 	SortedSLList Clone();
 	int Size();
 };

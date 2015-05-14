@@ -1,5 +1,40 @@
-#include "sortedsllist.h."
-#include "slnode.h"
+#include "SortedSLList.h"
+
+/* ---------------------------------------------------------------------------------- */
+/* - SLNode class methods ----------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------- */
+
+template<typename DataType>
+SortedSLList<DataType>::SLNode::SLNode()
+{
+	this->next = NULL;
+}
+
+template<typename DataType>
+SortedSLList<DataType>::SLNode::SLNode(const SLNode& Node)
+{
+	this->data = Node.data;
+	this->next = Node.next;
+}
+
+template<typename DataType>
+SortedSLList<DataType>::SLNode::~SLNode()
+{
+	;
+}
+
+template<typename DataType>
+typename SortedSLList<DataType>::SLNode& SortedSLList<DataType>::SLNode::operator=(const SLNode& Node)
+{
+	this->data = Node.data;
+	this->next = Node.next;
+}
+
+
+/* ---------------------------------------------------------------------------------- */
+/* - SortedSLList class methods ----------------------------------------------------- */
+/* ---------------------------------------------------------------------------------- */
+
 
 template<typename DataType>
 SortedSLList<DataType>::SortedSLList()
@@ -65,11 +100,6 @@ void SortedSLList<DataType>::RemoveAtIndex(const int& Index)
 	;
 }
 
-template<typename DataType>
-int SortedSLList<DataType>::GetIndexOfObject(const DataType& Index)
-{
-	;
-}
 
 template<typename DataType>
 SortedSLList<DataType> SortedSLList<DataType>::Clone()
