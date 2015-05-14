@@ -19,11 +19,11 @@ public:
 	/* Destructor */
 	~SLNode();
 	/* Operators */
-	SLNode&			operator=(const SLNode& Node);
+	SLNode& operator=(const SLNode& Node);
 	/* Setters */
-	void			SetNext(SLNode *Node);
+	void SetNext(SLNode *Node);
 	/* Getters */
-	SLNode			*GetNext();
+	SLNode *GetNext();
 };
 
 #endif //_SLNODE_H_

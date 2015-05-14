@@ -16,16 +16,16 @@ public:
 	SortedSLList(const DataType& object);
 	~SortedSLList();
 
-	DataType		GetFront();
-	DataType		GetBack();
-	DataType		GetAtIndex(const int& Index);
-	void			Add();
-	void			RemoveFront();
-	void			RemoveBack();
-	void			RemoveAtIndex(const int& Index);
-	int				GetIndexOfObject(const DataType& Object);
-	SortedSLList	Clone();
-	int				Size();
+	DataType GetFront();
+	DataType GetBack();
+	DataType GetAtIndex(const int& Index);
+	void Add();
+	void RemoveFront();
+	void RemoveBack();
+	void RemoveAtIndex(const int& Index);
+	int GetIndexOfObject(const DataType& Object);
+	SortedSLList Clone();
+	int Size();
 };
 
 #endif //_SORTEDSLLIST_H_

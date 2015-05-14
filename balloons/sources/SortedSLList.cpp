@@ -24,61 +24,61 @@ SortedSLList<DataType>::~SortedSLList()
 }
 
 template<typename DataType>
-DataType	SortedSLList<DataType>::GetFront()
+DataType SortedSLList<DataType>::GetFront()
 {
 	return (*(this->front));
 }
 
 template<typename DataType>
-DataType	SortedSLList<DataType>::GetBack()
+DataType SortedSLList<DataType>::GetBack()
 {
 	return (*(this->back));
 }
 
 template<typename DataType>
-DataType	SortedSLList<DataType>::GetAtIndex(const int& Index)
+DataType SortedSLList<DataType>::GetAtIndex(const int& Index)
 {
 	;
 }
 
 template<typename DataType>
-void	SortedSLList<DataType>::Add()
+void SortedSLList<DataType>::Add()
 {
 	;
 }
 
 template<typename DataType>
-void	SortedSLList<DataType>::RemoveFront()
+void SortedSLList<DataType>::RemoveFront()
 {
 	;
 }
 
 template<typename DataType>
-void	SortedSLList<DataType>::RemoveBack()
+void SortedSLList<DataType>::RemoveBack()
 {
 	;
 }
 
 template<typename DataType>
-void	SortedSLList<DataType>::RemoveAtIndex(const int& Index)
+void SortedSLList<DataType>::RemoveAtIndex(const int& Index)
 {
 	;
 }
 
 template<typename DataType>
-int		SortedSLList<DataType>::GetIndexOfObject(const DataType& Index)
+int SortedSLList<DataType>::GetIndexOfObject(const DataType& Index)
 {
 	;
 }
 
 template<typename DataType>
-SortedSLList<DataType>	SortedSLList<DataType>::Clone()
+SortedSLList<DataType> SortedSLList<DataType>::Clone()
 {
 	;
 }
 
 template<typename DataType>
-int		SortedSLList<DataType>::Size()
+int SortedSLList<DataType>::Size()
 {
 	;
 }

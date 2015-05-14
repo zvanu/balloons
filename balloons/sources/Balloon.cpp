@@ -12,20 +12,20 @@ Balloon::~Balloon()
 	;
 }
 
-Balloon&		Balloon::operator=(const Balloon& Balloon)
+Balloon& Balloon::operator=(const Balloon& Balloon)
 {
 	this->xCoordStart = Balloon.xCoordStart;
 	this->xCoordEnd = Balloon.xCoordEnd;
 	return (*this);
 }
 
-bool			Balloon::operator==(const Balloon& Balloon)
+bool Balloon::operator==(const Balloon& Balloon)
 {
 	return (this->xCoordStart == Balloon.xCoordStart &&
 		this->xCoordEnd == Balloon.xCoordEnd);
 }
 
-std::ostream&	operator<<(std::ostream& Os, const Balloon& Balloon)
+std::ostream& operator<<(std::ostream& Os, const Balloon& Balloon)
 {
 	Os << "X start: " << Balloon.GetXCoordStart() << " | ";
 	Os << "X end: " << Balloon.GetXCoordEnd() << "\n";
