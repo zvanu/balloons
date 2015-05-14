@@ -7,28 +7,22 @@ template<typename DataType>
 class SLNode
 {
 private:
-	/* Value from which the segment starts */
-	DataType	xCoordStart;
-	/* Value to which the segment ends */
-	DataType	xCoordEnd;
+	/* Data of the node */
+	DataType	data;
 	/* Pointer to the next element in list */
-	SLNode	*next;
+	SLNode		*next;
 
 public:
 	/* Constructor */
 	SLNode();
+	SLNode(const SLNode& Node);
 	/* Destructor */
 	~SLNode();
 	/* Operators */
-	SLNode&			operator=(const SLNode& other);
-	bool			operator==(const SLNode& other);
-	std::ostream	operator<<(const SLNode& node);
-
-	void			SetXCoordStart(DataType& value);
-	void			SetXCoordEnd(DataType& value);
-	DataType		GetXCoordStart();
-	DataType		GetXCoordEnd();
-	void			SetNext(SLNode *nextNode);
+	SLNode&			operator=(const SLNode& Node);
+	/* Setters */
+	void			SetNext(SLNode *Node);
+	/* Getters */
 	SLNode			*GetNext();
 };
 

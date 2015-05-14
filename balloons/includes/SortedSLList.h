@@ -18,12 +18,12 @@ public:
 
 	DataType		GetFront();
 	DataType		GetBack();
-	DataType		GetAtIndex(const int& index);
+	DataType		GetAtIndex(const int& Index);
 	void			Add();
 	void			RemoveFront();
 	void			RemoveBack();
-	void			RemoveAtIndex(const int& index);
-	int				GetIndexOfObject(const DataType& object);
+	void			RemoveAtIndex(const int& Index);
+	int				GetIndexOfObject(const DataType& Object);
 	SortedSLList	Clone();
 	int				Size();
 };

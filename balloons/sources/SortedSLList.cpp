@@ -10,10 +10,10 @@ SortedSLList<DataType>::SortedSLList()
 }
 
 template<typename DataType>
-SortedSLList<DataType>::SortedSLList(const DataType& object)
+SortedSLList<DataType>::SortedSLList(const DataType& Data)
 {
-	this->head = &object;
-	this->tail = &object;
+	this->head = &Data;
+	this->tail = &Data;
 	this->size = 1;
 }
 
@@ -36,7 +36,7 @@ DataType	SortedSLList<DataType>::GetBack()
 }
 
 template<typename DataType>
-DataType	SortedSLList<DataType>::GetAtIndex(const int& index)
+DataType	SortedSLList<DataType>::GetAtIndex(const int& Index)
 {
 	;
 }
@@ -60,13 +60,13 @@ void	SortedSLList<DataType>::RemoveBack()
 }
 
 template<typename DataType>
-void	SortedSLList<DataType>::RemoveAtIndex(const int& index)
+void	SortedSLList<DataType>::RemoveAtIndex(const int& Index)
 {
 	;
 }
 
 template<typename DataType>
-int		SortedSLList<DataType>::GetIndexOfObject(const DataType& object)
+int		SortedSLList<DataType>::GetIndexOfObject(const DataType& Index)
 {
 	;
 }
