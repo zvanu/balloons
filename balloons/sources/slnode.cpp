@@ -15,7 +15,7 @@ SLNode<DataType>::~SLNode()
 }
 
 template<typename DataType>
-SLNode<DataType>&			SLNode<DataType>::operator=(const SLNode& other)
+SLNode<DataType>& SLNode<DataType>::operator=(const SLNode& other)
 {
 	this->xCoordStart = other.xCoordStart;
 	this->xCoordEnd = other.xCoordEnd;
@@ -23,14 +23,14 @@ SLNode<DataType>&			SLNode<DataType>::operator=(const SLNode& other)
 }
 
 template<typename DataType>
-bool			SLNode<DataType>::operator==(const SLNode& other)
+bool SLNode<DataType>::operator==(const SLNode& other)
 {
 	return (this->xCoordStart == other->xCoordStart &&
 		this->xCoordEnd == other->xCoordEnd);
 }
 
 template<typename DataType>
-std::ostream	SLNode<DataType>::operator<<(const SLNode& node)
+std::ostream SLNode<DataType>::operator<<(const SLNode& node)
 {
 	cout << "X start: " << node.xCoordStart << " | ";
 	cout << "X end: " << node.xCoordEnd << "\n";
@@ -61,13 +61,13 @@ DataType SLNode<DataType>::GetXCoordEnd()
 }
 
 template<typename DataType>
-void	SLNode<DataType>::SetNext(SLNode *nextNode)
+void SLNode<DataType>::SetNext(SLNode *nextNode)
 {
 	this->next = nextNode;
 }
 
 template<typename DataType>
-SLNode<DataType>*		SLNode<DataType>::GetNext()
+SLNode<DataType>* SLNode<DataType>::GetNext()
 {
 	return (this->next);
 }
