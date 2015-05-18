@@ -1,8 +1,10 @@
 #ifndef _SORTEDSLLIST_H_
 # define _SORTEDSLLIST_H_
 
-template <typename DataType> 
-class SortedSLList
+#include "SortedList.h"
+
+template <typename Object> 
+class SortedSLList : public SortedList<Object>
 {
 private:
 	/* ---------------------------------------------------------------------------------- */
@@ -11,8 +13,8 @@ private:
 	class SLNode
 	{
 	private:
-		DataType	data;
-		SLNode		*next;
+		Object data;
+		SLNode *next;
 
 	public:
 		SLNode();
@@ -23,22 +25,22 @@ private:
 	/* ---------------------------------------------------------------------------------- */
 	/* - END ---------------------------------------------------------------------------- */
 	/* ---------------------------------------------------------------------------------- */
-	SLNode	*front;
-	SLNode	*back;
-	int		size;
+	SLNode *front;
+	SLNode *back;
 
 public:
 	SortedSLList();
-	SortedSLList(const DataType& Data);
+	SortedSLList(const Object& Data);
 	~SortedSLList();
-	DataType GetFront();
-	DataType GetBack();
-	DataType GetAtIndex(const int& Index);
-	void Add();
+	Object GetAtIndex(const int& Index);
+	Object GetFront();
+	Object GetBack();
+	void Add(const Object& Data);
+	void RemoveAtIndex(const int& Index);
 	void RemoveFront();
 	void RemoveBack();
-	void RemoveAtIndex(const int& Index);
-	SortedSLList Clone();
+	bool Contains(const Object& Key);
+	void Clear();
 	int Size();
 };
 
