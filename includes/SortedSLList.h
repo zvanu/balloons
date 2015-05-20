@@ -14,15 +14,16 @@ private:
 	class SLNode
 	{
 	protected:
+		friend class SortedSLList<Object>;
 		Object data;
 		SLNode *next;
 
 	public:
 		SLNode();
 		SLNode(const SLNode& Node);
+		SLNode(const Object& Data);
 		~SLNode();
 		SLNode& operator=(const SLNode& Node);
-		SLNode* GetNext();
 		Object GetData();
 	};
 	/* ---------------------------------------------------------------------------------- */
@@ -42,7 +43,7 @@ public:
 	void RemoveAtIndex(const int& Index);
 	void RemoveFront();
 	void RemoveBack();
-	bool Contains(const Object& Key);
+	bool Contains(const Object& Data);
 	void Clear();
 	int Size();
 };
@@ -64,6 +65,13 @@ SortedSLList<Object>::SLNode::SLNode(const SLNode& Node)
 }
 
 template<typename Object>
+SortedSLList<Object>::SLNode::SLNode(const Object& Data)
+{
+	this->data = Data;
+	this->next = NULL;
+}
+
+template<typename Object>
 SortedSLList<Object>::SLNode::~SLNode()
 {
 	;
@@ -74,12 +82,6 @@ typename SortedSLList<Object>::SLNode& SortedSLList<Object>::SLNode::operator=(c
 {
 	this->data = Node.data;
 	this->next = Node.next;
-}
-
-template<typename Object>
-typename SortedSLList<Object>::SLNode* SortedSLList<Object>::SLNode::GetNext()
-{
-	return (this->next);
 }
 
 template<typename Object>
@@ -102,8 +104,8 @@ SortedSLList<Object>::SortedSLList()
 template<typename Object>
 SortedSLList<Object>::SortedSLList(const Object& Data)
 {
-	this->head = &Data;
-	this->tail = &Data;
+	this->head = new SLNode(Data);
+	this->tail = new SLNode(Data);
 	this->count = 1;
 }
 
@@ -134,30 +136,77 @@ Object SortedSLList<Object>::GetAtIndex(const int& Index)
 	/*
 		We parse the list in order to obtain the required Object
 	*/
-	temp = (SLNode*)this->front;
-	while (index <= Index)
+	temp = this->front;
+	index = 0;
+	while (index < Index)
 	{
-		temp = temp->GetNext();
+		temp = temp->next;
+		index++;
 	}
-	return (temp->GetData());
+	return (temp->data);
 }
 
 template<typename Object>
 Object SortedSLList<Object>::GetFront()
 {
-	return (*(this->front));
+	return (this->front->data);
 }
 
 template<typename Object>
 Object SortedSLList<Object>::GetBack()
 {
-	return (*(this->back));
+	return (this->back->data);
 }
 
 template<typename Object>
 void SortedSLList<Object>::Add(const Object& Data)
 {
-	;
+	SLNode *searchNode;
+	SLNode *prevSearchNode;
+
+	searchNode = NULL;
+	prevSearchNode = NULL;
+
+	/* List is empty */
+	if (NULL == this->front &&
+		NULL == this->back)
+	{
+		this->front = new SLNode(Data);
+		this->back = this->front;
+		this->count = 1;
+	}
+	else
+	{
+		prevSearchNode = this->front;
+		searchNode = this->front;
+		while (Data > searchNode->data && NULL != searchNode->next)
+		{
+			prevSearchNode = searchNode;
+			searchNode = searchNode->next;
+		}
+
+		/* Add at beginning */
+		if (prevSearchNode == searchNode)
+		{
+			searchNode = new SLNode(Data);
+			searchNode->next = this->front;
+			this->front = searchNode;
+			count++;
+		}
+		/* Add in the middle */
+		else if (NULL != searchNode->next)
+		{
+			prevSearchNode->next = new SLNode(Data);
+			prevSearchNode->next->next = searchNode;
+			count++;
+		}
+		/* Add at the end */
+		else if (NULL == searchNode->next)
+		{
+			searchNode->next = new SLNode(Data);
+			count++;
+		}
+	}
 }
 
 template<typename Object>
@@ -179,9 +228,11 @@ void SortedSLList<Object>::RemoveBack()
 }
 
 template<typename Object>
-bool SortedSLList<Object>::Contains(const Object& Key)
+bool SortedSLList<Object>::Contains(const Object& Data)
 {
-	return FALSE;
+	SLNode *temp;
+
+	temp = new SLNode(Data);
 }
 
 template<typename Object>
