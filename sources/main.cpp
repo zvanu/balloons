@@ -15,6 +15,9 @@ int main(int argc, char *argv[])
 	sList.Add(3);
 	sList.Add(1);
 	sList.Add(6);
+	sList.Add(4);
+	sList.Add(1);
+	sList.Add(6);
 	index = 0;
 	while (index < sList.Size())
 	{

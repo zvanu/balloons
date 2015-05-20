@@ -118,10 +118,10 @@ SortedSLList<Object>::~SortedSLList()
 template<typename Object>
 Object SortedSLList<Object>::GetAtIndex(const int& Index)
 {
-	SLNode *temp;
+	SLNode *node;
 	int index;
 
-	temp = NULL;
+	node = NULL;
 	index = 0;
 
 	/* 
@@ -130,20 +130,20 @@ Object SortedSLList<Object>::GetAtIndex(const int& Index)
 	*/
 	if (Index > (this->count - 1))
 	{
-		return NULL;
+		return (NULL);
 	}
 
 	/*
 		We parse the list in order to obtain the required Object
 	*/
-	temp = this->front;
+	node = this->front;
 	index = 0;
 	while (index < Index)
 	{
-		temp = temp->next;
+		node = node->next;
 		index++;
 	}
-	return (temp->data);
+	return (node->data);
 }
 
 template<typename Object>
@@ -212,32 +212,109 @@ void SortedSLList<Object>::Add(const Object& Data)
 template<typename Object>
 void SortedSLList<Object>::RemoveAtIndex(const int& Index)
 {
-	;
+	SLNode *prevNode;
+	SLNode *node;
+	int index;
+
+	prevNode = NULL;
+	node = NULL;
+	index = 0;
+
+	/*
+	If the Index is bigger than count that means we
+	want an object from outside the list, so we return NULL
+	*/
+	if (Index > (this->count - 1))
+	{
+		return;
+	}
+
+	/*
+	We parse the list in order to obtain the required Object
+	*/
+	node = this->front;
+	index = 0;
+	while (index < Index)
+	{
+		prevNode = node;
+		node = node->next;
+		index++;
+	}
+
+	prevNode->next = node->next;
+	delete node;
+	count--;
 }
 
 template<typename Object>
 void SortedSLList<Object>::RemoveFront()
 {
-	;
+	SLNode *node;
+
+	node = NULL;
+
+	node = this->front->next;
+	delete this->front;
+	this->front = node;
+	count--;
 }
 
 template<typename Object>
 void SortedSLList<Object>::RemoveBack()
 {
-	;
+	SLNode *node;
+	SLNode *prevNode;
+
+	node = NULL;
+	prevNode = NULL;
+
+	node = this->front;
+	while (NULL != node->next)
+	{
+		prevNode = node;
+		node = node->next;
+	}
+	delete node;
+	prevNode->next = NULL;
+	count--;
 }
 
 template<typename Object>
 bool SortedSLList<Object>::Contains(const Object& Data)
 {
-	SLNode *temp;
+	SLNode *searchNode;
 
-	temp = new SLNode(Data);
+	searchNode = NULL;
+
+	searchNode = this->front;
+	while (NULL != searchNode)
+	{
+		if (searchNode->data == Data)
+		{
+			return (TRUE);
+		}
+		searchNode = searchNode->next;
+	}
+	return (FALSE);
 }
 
 template<typename Object>
 void SortedSLList<Object>::Clear()
 {
+	SLNode *prevNode;
+	SLNode *node;
+
+	prevNode = NULL;
+	node = NULL;
+
+	node = this->front;
+	while (NULL != node)
+	{
+		prevNode = node;
+		node = node->next;
+		delete prevNode;
+	}
+
 	this->front = NULL;
 	this->back = NULL;
 	this->count = 0;
