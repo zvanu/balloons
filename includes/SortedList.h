@@ -4,7 +4,7 @@
 template <typename Object>
 class SortedList
 {
-private:
+protected:
 	int count;
 
 public:
