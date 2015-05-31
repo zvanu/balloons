@@ -1,28 +1,36 @@
-#include <iostream>
+#include "AbstractSortedList.h"
 #include "SortedSLList.h"
 #include "Balloon.h"
-#include "Status.h"
-#include "SortedList.h"
+#include "Solver.h"
 
 int main(int argc, char *argv[])
 {
+	Container sList;
 	int index;
+	int status;
 
-	SortedSLList<int> sList = SortedSLList<int>();
-	sList.Add(5);
-	sList.Add(4);
-	sList.Add(2);
-	sList.Add(3);
-	sList.Add(1);
-	sList.Add(6);
-	sList.Add(4);
-	sList.Add(1);
-	sList.Add(6);
 	index = 0;
-	while (index < sList.Size())
+	status = 0;
+
+	status = ReadData(&sList, "data.in");
+	if (0 != status)
 	{
-		std::cout << sList.GetAtIndex(index) << " ";
+		std::cout << "ReadData failed with status " << status << "\n";
+		return (status);
+	}
+
+	index = 0;
+	for (auto it = sList.begin(); it != sList.end(); it++)
+	{
+		Balloon balloon = *it;
+		std::cout << "Balloon " << index << ": " << balloon.getXCoordStart() << " " << balloon.getXCoordEnd() << "\n";
 		index++;
+	}
+	status = SolveBalloonsProblem(&sList, "data.out");
+	if (0 != status)
+	{
+		std::cout << "SolveBalloonsProblem failed with status " << status << "\n";
+		return (status);
 	}
 	return (0);
 }
