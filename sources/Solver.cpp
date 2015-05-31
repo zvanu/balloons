@@ -7,6 +7,7 @@
 	sList - Container
 	filePath - Path to input file
 	Return Value: 0 - Success / != 0 - Failure
+	PRECOND: sList is not NULL
 */
 int ReadData(Container *sList, std::string filePath)
 {
@@ -36,6 +37,7 @@ int ReadData(Container *sList, std::string filePath)
 	Set balloon arrow status to true for the balloons pierced by arrow
 	sList - Container
 	arrowCoord - X coordinate for arrow
+	PRECOND: sList is not NULL
 */
 static void SetArrowStatus(Container *sList, float arrowCoord)
 {
@@ -62,6 +64,7 @@ static void SetArrowStatus(Container *sList, float arrowCoord)
 	then setting the status of the other balloons as pierced.
 	sList - Container
 	filePath - Path to output file
+	PRECOND: sList is not NULL
 */
 int SolveBalloonsProblem(Container *sList, std::string filePath)
 {

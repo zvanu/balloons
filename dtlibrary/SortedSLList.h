@@ -30,8 +30,7 @@
 | Written by Ratiu Razvan - Marian, Group 916, Faculty of Computer Science, English specialization |
 \**************************************************************************************************/
 
-/* Required for NULL define */
-#include <Windows.h>
+#include <Windows.h> /* Required for NULL define */
 
 #include "AbstractSortedList.h"
 #include "AbstractSortedListIterator.h"
