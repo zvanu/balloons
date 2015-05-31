@@ -20,6 +20,10 @@
 |   - begin                                                                                        |
 |   - end                                                                                          |
 |**************************************************************************************************|
+| Implementation also involves SLNode and Iterator:                                                |
+|   - SLNode - node in the list (contains data_ and next_ two private variables)                   |
+|   - Iterator - iterator for the list, AbstractSortedListIterator for more details                |
+|**************************************************************************************************|
 | General rules used:                                                                              |
 |   - All parameter variables start with capital letter (e.g 'Node').                              |
 |   - Private or Protected variables have an underscore suffix.                                    |
@@ -111,6 +115,7 @@ public:
 /* ---------------------------------------------------------------------------------- */
 /* - SLNode class methods ----------------------------------------------------------- */
 /* ---------------------------------------------------------------------------------- */
+
 template<typename Object>
 SortedSLList<Object>::SLNode::SLNode()
 {
@@ -235,6 +240,7 @@ Object& SortedSLList<Object>::Iterator::operator*() const
 /* ---------------------------------------------------------------------------------- */
 /* - SortedSLList class methods ----------------------------------------------------- */
 /* ---------------------------------------------------------------------------------- */
+
 template<typename Object>
 SortedSLList<Object>::SortedSLList()
 {
