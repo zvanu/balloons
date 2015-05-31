@@ -1,7 +1,6 @@
 #ifndef _SORTEDSLLIST_H_
 # define _SORTEDSLLIST_H_
 
-/*
 /**************************************************************************************************\
 | Sorted List implementation over Single Linked List.                                              |
 |**************************************************************************************************|
@@ -30,7 +29,8 @@
 | Written by Ratiu Razvan - Marian, Group 916, Faculty of Computer Science, English specialization |
 \**************************************************************************************************/
 
-#include <Windows.h> /* Required for NULL define */
+/* Required for NULL define */
+#include <Windows.h>
 
 #include "AbstractSortedList.h"
 #include "AbstractSortedListIterator.h"
@@ -73,6 +73,7 @@ public:
 
 		/* Is iterator valid (NULL != this->current) */
 		bool isValid();
+		bool hasNext();
 		/* Iterator operators */
 		void operator++();
 		void operator++(int);
@@ -175,17 +176,36 @@ bool SortedSLList<Object>::Iterator::isValid()
 }
 
 template <typename Object>
+bool SortedSLList<Object>::Iterator::hasNext()
+{
+	if (NULL == this->current_)
+	{
+		return (false);
+	}
+
+	if (NULL == this->current_->next_)
+	{
+		return (false);
+	}
+	return (true);
+}
+
+template <typename Object>
 void SortedSLList<Object>::Iterator::operator++()
 {
 	if (NULL != this->current_)
+	{
 		this->current_ = this->current_->next_;
+	}
 }
 
 template <typename Object>
 void SortedSLList<Object>::Iterator::operator++(int)
 {
 	if (NULL != this->current_)
+	{
 		this->current_ = this->current_->next_;
+	}
 }
 
 template <typename Object>
@@ -203,13 +223,13 @@ bool SortedSLList<Object>::Iterator::operator!=(const Iterator& Other)
 template <typename Object>
 typename SortedSLList<Object>::Iterator& SortedSLList<Object>::Iterator::operator=(const Iterator& Other)
 {
-	 this->current_ = Other.current_;
+	this->current_ = Other.current_;
 }
 
 template <typename Object>
 Object& SortedSLList<Object>::Iterator::operator*() const
 {
-		return (this->current_->getData());
+	return (this->current_->getData());
 }
 
 /* ---------------------------------------------------------------------------------- */
@@ -281,7 +301,9 @@ template<typename Object>
 Object SortedSLList<Object>::getFront()
 {
 	if (NULL != this->front_)
+	{
 		return (this->front_->data_);
+	}
 	return Object();
 }
 
@@ -293,7 +315,9 @@ template<typename Object>
 Object SortedSLList<Object>::getBack()
 {
 	if (NULL != this->back_)
+	{
 		return (this->back_->data_);
+	}
 	return Object();
 }
 

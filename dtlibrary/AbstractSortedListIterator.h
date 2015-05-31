@@ -26,6 +26,7 @@ protected:
 
 public:
 	virtual bool isValid() = 0;
+	virtual bool hasNext() = 0;
 	virtual void operator++() = 0;
 	virtual O& operator*() const = 0;
 };
