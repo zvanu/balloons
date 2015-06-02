@@ -24,6 +24,9 @@
 	Defines for easy change of containers 
 	!!! WARNING !!!
 		Only modify 'MAINCONTAINER'. Other modifications may result in undefined behaviour
+		Switch between:
+			Containers::SortedDynamicVector
+			Containers::SortedSLList
 */
 #define MAINCONTAINER Containers::SortedDynamicVector
 #define CONTAINER MAINCONTAINER<Balloon>
