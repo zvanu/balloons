@@ -5,9 +5,9 @@
 |   - getAtIndex (index given)                                                                     |
 |   - add (insert sorted)                                                                          |
 |   - removeAtIndex (index given)                                                                  |
-|   - contains (checks if list contains given data)                                                |
-|   - clear (list is empty after call)                                                             |
-|   - size (returns list node count)                                                               |
+|   - contains (checks if vector contains given data)                                                |
+|   - clear (vector is empty after call)                                                             |
+|   - size (returns vector node count)                                                               |
 |**************************************************************************************************|
 | Extra Methods: (see definitions for more details)                                                |
 |   - getFront                                                                                     |
@@ -77,13 +77,13 @@ namespace Containers
 		SortedDynamicVector(const SortedDynamicVector& Other);
 		/* Destructors */
 		~SortedDynamicVector();
-		/* Get the 'data' at Index in list */
+		/* Get the 'data' at Index in vector */
 		Object getAtIndex(const int& Index);
-		/* Get the 'data' at front in list */
+		/* Get the 'data' at front in vector */
 		Object getFront();
-		/* Get the 'data' at back in list */
+		/* Get the 'data' at back in vector */
 		Object getBack();
-		/* Add into the list sorted ascending */
+		/* Add into the vector sorted ascending */
 		void add(const Object& Data);
 		/* Removie the 'data' at Index in vector */
 		void removeAtIndex(const int& Index);
@@ -91,11 +91,11 @@ namespace Containers
 		void removeFront();
 		/* Remove the 'data' at back in vector */
 		void removeBack();
-		/* Check if list contains 'Data' */
+		/* Check if vector contains 'Data' */
 		bool contains(const Object& Data);
-		/* Clear list */
+		/* Clear vector */
 		void clear();
-		/* Return list node count */
+		/* Return vector node count */
 		int size();
 		/* Return iterator at beginning of vector */
 		Iterator begin();
@@ -345,7 +345,7 @@ namespace Containers
 	}
 	
 	/*
-		Get element from 'Index' in list (counting from 0!!!)
+		Get element from 'Index' in vector (counting from 0!!!)
 		Index - The vector element position
 		@PRECOND: Index points between 0 and count, Vector is valid (nonempty)
 		@POSTCOND: 
@@ -356,7 +356,7 @@ namespace Containers
 	{
 		/*
 			If the Index is bigger than count that means we
-			want an object from outside the list, so we return NULL-type object
+			want an object from outside the vector, so we return NULL-type object
 		*/
 		if (Index >= this->count_)
 		{
@@ -414,8 +414,8 @@ namespace Containers
 	}
 
 	/*
-		Remove element from list at 'Index'
-		Index - The list element position
+		Remove element from vector at 'Index'
+		Index - The vector element position
 		@PRECOND: Index points between 0 and count, Vector is valid (nonempty)
 		@POSTCOND:
 			Object at index 'Index' is now removed
@@ -474,7 +474,7 @@ namespace Containers
 	}
 
 	/*
-		Clears the list
+		Clears the vector
 		@PRECOND: None
 		@POSTCOND: this->count_ = 0;
 	*/

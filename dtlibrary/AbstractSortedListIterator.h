@@ -26,9 +26,37 @@ protected:
 	T* current_;
 
 public:
+	/*
+	Check if the iterator is valid
+		@PRECOND: None
+		@POSTCOND:
+			Return: True - iterator is valid
+			Return: False - iterator is not valid
+	*/
 	virtual bool isValid() = 0;
+
+	/*
+		Check if the iterator has a 'next' element
+		@PRECOND: current_ != NULL
+		@POSTCOND:
+			Return: True - iterator has a next element
+			Return: False - otherwise
+	*/
 	virtual bool hasNext() = 0;
+
+	/*
+		Iterate through elements
+		@PRECOND: Iterator is valid
+		@POSTCOND: current_ becomes the next element
+	*/
 	virtual void operator++() = 0;
+
+	/*
+		Return the Object
+		@PRECOND: Iterator is valid
+		@POSTCOND:
+			Return: Object contained in current_
+	*/
 	virtual O& operator*() const = 0;
 };
 
