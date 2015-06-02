@@ -173,6 +173,8 @@ namespace Containers
 	/*
 		Set current element (PRIVATE)
 		Node - Other node
+		@PRECOND: None
+		@POSTCOND: current_ = Node
 	*/
 	template <typename Object>
 	void SortedSLList<Object>::Iterator::setCurrent(SLNode* Node)
@@ -197,7 +199,8 @@ namespace Containers
 
 	/*
 		Check if the iterator is valid
-		POSTCOND:
+		@PRECOND:
+		@POSTCOND:
 			True - this->current_ is not NULL
 			False - this->current_ is NULL
 	*/
@@ -209,7 +212,8 @@ namespace Containers
 
 	/*
 		Check if the iterator has a 'next' element
-		POSTCOND:
+		@PRECOND: NULL != current_, NULL != current_->next_
+		@POSTCOND:
 			True - this->current_ and this->current_->next_ is not NULL
 			False - otherwise
 	*/
@@ -230,6 +234,8 @@ namespace Containers
 	/*
 		Iterate through elements (obtain the 'next_' element)
 		*** PREFIX ++ ***
+		@PRECOND: current_ != NULL
+		@POSTCOND: current_ = current_->next
 	*/
 	template <typename Object>
 	void SortedSLList<Object>::Iterator::operator++()
@@ -243,6 +249,8 @@ namespace Containers
 	/*
 		Iterate through elements (obtain the 'next_' element)
 		*** POSTFIX ++ ***
+		@PRECOND: current_ != NULL
+		@POSTCOND: current_ = current_->next
 	*/
 	template <typename Object>
 	void SortedSLList<Object>::Iterator::operator++(int)
@@ -255,7 +263,8 @@ namespace Containers
 
 	/*
 		Check if this->current_ equals other.current_
-		POSTCOND:
+		@PRECOND: None
+		@POSTCOND:
 			True - this->current_ equals other.current_
 			False - otherwise
 	*/
@@ -267,7 +276,8 @@ namespace Containers
 
 	/*
 		Check if this->current_ does not equal other.current_
-		POSTCOND:
+		@PRECOND: None
+		@POSTCOND:
 			True - this->current_ is not equal to other.current_
 			False - otherwise
 	*/
@@ -277,6 +287,11 @@ namespace Containers
 		return (this->current_ != Other.current_);
 	}
 
+	/*
+		@PRECOND: None
+		@POSTCOND: current_ = Other.current_
+			Return: this
+	*/
 	template <typename Object>
 	typename SortedSLList<Object>::Iterator& SortedSLList<Object>::Iterator::operator=(const Iterator& Other)
 	{
@@ -286,6 +301,9 @@ namespace Containers
 
 	/*
 		Return the Object
+		@PRECOND: current_ != NULL
+		@POSTCOND:
+			Return: Object contained in current_
 	*/
 	template <typename Object>
 	Object& SortedSLList<Object>::Iterator::operator*() const
@@ -299,6 +317,11 @@ namespace Containers
 
 	/*
 		Default constructor
+		@PRECOND: None
+		@POSTCOND:
+			front = NULL
+			back = NULL
+			count = 0
 	*/
 	template<typename Object>
 	SortedSLList<Object>::SortedSLList()
@@ -310,12 +333,17 @@ namespace Containers
 
 	/*
 		Constructor when Object is given
+		@PRECOND: None
+		@POSTCOND:
+			front = new Node containing Data
+			back = front
+			count = 1
 	*/
 	template<typename Object>
 	SortedSLList<Object>::SortedSLList(const Object& Data)
 	{
-		this->front = new SLNode(Data);
-		this->back = new SLNode(Data);
+		this->front_ = new SLNode(Data);
+		this->back_ = this->front_;
 		this->count_ = 1;
 	}
 
@@ -328,7 +356,9 @@ namespace Containers
 	/*
 		Get element from 'Index' in list (counting from 0!!!)
 		Index - The list element position
-		PRECOND: Index points between 0 and count
+		@PRECOND: Index points between 0 and count
+		@POSTCOND:
+			Return: Object contained at Index
 	*/
 	template<typename Object>
 	Object SortedSLList<Object>::getAtIndex(const int& Index)
@@ -363,7 +393,9 @@ namespace Containers
 
 	/*
 		Get the first element in the list
-		PRECOND: List is valid (nonempty)
+		@PRECOND: List is valid (nonempty)
+		@POSTCOND: 
+			Return: Object contained at front
 	*/
 	template<typename Object>
 	Object SortedSLList<Object>::getFront()
@@ -377,7 +409,9 @@ namespace Containers
 
 	/*
 		Get the last element in the list
-		PRECOND: List is valid (nonempty)
+		@PRECOND: List is valid (nonempty)
+		@POSTCOND:
+		Return: Object contained at back
 	*/
 	template<typename Object>
 	Object SortedSLList<Object>::getBack()
@@ -392,7 +426,9 @@ namespace Containers
 	/*
 		Add element in the list (SORTED ASCENDING)
 		Data - Element to be added in the list (SLNode is created with SLNode->data = Data)
-		PRECOND: Data is an object of 'Object' type (defined at declaration)
+		@PRECOND: Data is an object of 'Object' type (defined at declaration)
+		@POSTCOND:
+			SLList now contains 'Data'
 	*/
 	template<typename Object>
 	void SortedSLList<Object>::add(const Object& Data)
@@ -444,7 +480,9 @@ namespace Containers
 	/*
 		Remove element from list at 'Index'
 		Index - The list element position
-		PRECOND: Index points between 0 and count
+		@PRECOND: Index points between 0 and count
+		@POSTCOND:
+			Object at index 'Index' is now removed
 	*/
 	template<typename Object>
 	void SortedSLList<Object>::removeAtIndex(const int& Index)
@@ -486,6 +524,9 @@ namespace Containers
 
 	/*
 		Remove front element
+		@PRECOND: List is valid (nonempty)
+		@POSTCOND:
+			Object at index 0 is now removed
 	*/
 	template<typename Object>
 	void SortedSLList<Object>::removeFront()
@@ -504,6 +545,9 @@ namespace Containers
 
 	/*
 		Remove back element
+		@PRECOND: List is valid (nonempty)
+		@POSTCOND:
+			Object at index 'count_ - 1' is now removed
 	*/
 	template<typename Object>
 	void SortedSLList<Object>::removeBack()
@@ -529,6 +573,10 @@ namespace Containers
 	/*
 		Check if the list contains 'Data'
 		Data - Data to be checked if it exists
+		@PRECOND: Data is an object of 'Object' type (defined at declaration)
+		@POSTCOND
+			Return: True - if it exists
+			Return: False - otherwise
 	*/
 	template<typename Object>
 	bool SortedSLList<Object>::contains(const Object& Data)
@@ -551,7 +599,8 @@ namespace Containers
 
 	/*
 		Clears the list
-		POSTCOND: this->count_ = 0;
+		@PRECOND: None
+		@POSTCOND: this->count_ = 0;
 	*/
 	template<typename Object>
 	void SortedSLList<Object>::clear()
@@ -577,6 +626,9 @@ namespace Containers
 
 	/*
 		Returns the node count (this->count_)
+		@PRECOND: None
+		@POSTCOND:
+			Return: count_ (element count in vector)
 	*/
 	template<typename Object>
 	int SortedSLList<Object>::size()
@@ -586,6 +638,9 @@ namespace Containers
 
 	/*
 		Returns an Iterator to the beginning of the list
+		@PRECOND: None
+		@POSTCOND:
+			Return: New iterator at beginning of vector
 	*/
 	template<typename Object>
 	typename SortedSLList<Object>::Iterator SortedSLList<Object>::begin()
@@ -597,6 +652,9 @@ namespace Containers
 
 	/*
 		Returns an Iterator to the end of the list
+		@PRECOND: None
+		@POSTCOND:
+			Return: New iterator at end of vector
 	*/
 	template<typename Object>
 	typename SortedSLList<Object>::Iterator SortedSLList<Object>::end()

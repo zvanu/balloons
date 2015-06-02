@@ -110,6 +110,8 @@ namespace Containers
 	/*
 		Set current element (PRIVATE)
 		Address - Address of the array (position), then we can iterate by pointer++
+		@PRECOND: None
+		@POSTCOND: current_ = Address
 	*/
 	template <typename Object>
 	void SortedDynamicVector<Object>::Iterator::setCurrent(Object *Address)
@@ -131,9 +133,10 @@ namespace Containers
 
 	/*
 		Check if the iterator is valid
-		POSTCOND: 
-			True - this->current_ is not NULL
-			False - this->current_ is NULL
+		@PRECOND: None
+		@POSTCOND:
+			Return: True - this->current_ is not NULL
+			Return: False - this->current_ is NULL
 	*/
 	template <typename Object>
 	bool SortedDynamicVector<Object>::Iterator::isValid()
@@ -143,9 +146,10 @@ namespace Containers
 
 	/*
 		Check if the iterator has a 'next' element
-		POSTCOND:
-			True - this->current_ is not NULL
-			False - otherwise
+		@PRECOND: current_ != NULL
+		@POSTCOND:
+			Return: True - this->current_ is not NULL
+			Return: False - otherwise
 	*/
 	template <typename Object>
 	bool SortedDynamicVector<Object>::Iterator::hasNext()
@@ -161,6 +165,8 @@ namespace Containers
 		Iterate through elements (increase pointer)
 		*** I also check for NULL pointer even though it shouldn't happen ***
 		*** PREFIX ++ ***
+		@PRECOND: current_ != NULL
+		@POSTCOND: current_ = current_ + 1
 	*/
 	template <typename Object>
 	void SortedDynamicVector<Object>::Iterator::operator++()
@@ -173,6 +179,8 @@ namespace Containers
 		Iterate through elements (increase pointer)
 		*** I also check for NULL pointer even though it shouldn't happen ***
 		*** POSTFIX ++ ***
+		@PRECOND: current_ != NULL
+		@POSTCOND: current_ = current_ + 1
 	*/
 	template <typename Object>
 	void SortedDynamicVector<Object>::Iterator::operator++(int)
@@ -183,9 +191,10 @@ namespace Containers
 
 	/* 
 		Check if this->current_ equals other.current_
-		POSTCOND:
-			True - this->current_ equals other.current_
-			False - otherwise
+		@PRECOND: None
+		@POSTCOND:
+			Return: True - this->current_ equals other.current_
+			Return: False - otherwise
 	*/
 	template <typename Object>
 	bool SortedDynamicVector<Object>::Iterator::operator==(const Iterator& Other)
@@ -195,9 +204,10 @@ namespace Containers
 
 	/*
 		Check if this->current_ does not equal other.current_
-		POSTCOND:
-			True - this->current_ is not equal to other.current_
-			False - otherwise
+		@PRECOND: None
+		@POSTCOND:
+			Return: True - this->current_ is not equal to other.current_
+			Return: False - otherwise
 	*/
 	template <typename Object>
 	bool SortedDynamicVector<Object>::Iterator::operator!=(const Iterator& Other)
@@ -205,6 +215,11 @@ namespace Containers
 		return (this->current_ != Other.current_);
 	}
 
+	/*
+		@PRECOND: None
+		@POSTCOND: current_ = Other.current_
+			Return: this
+	*/
 	template <typename Object>
 	typename SortedDynamicVector<Object>::Iterator& SortedDynamicVector<Object>::Iterator::operator=(const Iterator& Other)
 	{
@@ -214,11 +229,15 @@ namespace Containers
 
 	/*
 		Return the Object
+		@PRECOND: current_ != NULL
+		@POSTCOND:
+			Return: Object contained in current_
 	*/
 	template <typename Object>
 	Object& SortedDynamicVector<Object>::Iterator::operator*() const
 	{
-		return (*(this->current_));
+		if (NULL != this->current_)
+			return (*(this->current_));
 	}
 
 	/* ---------------------------------------------------------------------------------- */
@@ -227,7 +246,8 @@ namespace Containers
 
 	/*
 		Make sure there is enough space in the vector to contain NewCapacity elements
-		POSTCOND:
+		@PRECOND: NewCapacity > 0
+		@POSTCOND:
 			If NewCapacity > this->capacity_:
 				- this->capacity_ is big enough to have elements
 				- this->array_ has a new size (this->capacity_)
@@ -259,6 +279,8 @@ namespace Containers
 
 	/*
 		Switch all elements from 'Index' to end with one position to the left (for remove)
+		@PRECOND: Index >= 0
+		@POSTCOND: array_ is shifted one position to left at Index
 	*/
 	template <typename Object>
 	void SortedDynamicVector<Object>::switchLeftAtIndex(const int& Index)
@@ -271,6 +293,8 @@ namespace Containers
 	
 	/*
 		Switch all elements from 'Index' to end with one position to the right (for add)
+		@PRECOND: Index >= 0
+		@POSTCOND: array_ is shifted one position to right at index
 	*/
 	template <typename Object>
 	void SortedDynamicVector<Object>::switchRightAtIndex(const int& Index)
@@ -286,6 +310,8 @@ namespace Containers
 			- this->capacity_ = 10
 			- this->count_ = 0;
 			- this->array_ is an array of 10 elements
+		@PRECOND: None
+		@POSTCOND: New Dynamic Vector
 	*/
 	template <typename Object>
 	SortedDynamicVector<Object>::SortedDynamicVector()
@@ -297,6 +323,8 @@ namespace Containers
 
 	/*
 		Copy constructor
+		@PRECOND: Other - valid Dynamic Vector
+		@POSTCOND: New Dynamic Vector identical to Other
 	*/
 	template <typename Object>
 	SortedDynamicVector<Object>::SortedDynamicVector(const SortedDynamicVector& Other)
@@ -319,7 +347,9 @@ namespace Containers
 	/*
 		Get element from 'Index' in list (counting from 0!!!)
 		Index - The vector element position
-		PRECOND: Index points between 0 and count
+		@PRECOND: Index points between 0 and count, Vector is valid (nonempty)
+		@POSTCOND: 
+			Return: Object contained at Index
 	*/
 	template <typename Object>
 	Object SortedDynamicVector<Object>::getAtIndex(const int& Index)
@@ -337,7 +367,9 @@ namespace Containers
 
 	/*
 		Get the first element in the vector
-		PRECOND: Vector is valid (nonempty)
+		@PRECOND: Vector is valid (nonempty)
+		@POSTCOND:
+			Return: Object contained at front
 	*/
 	template <typename Object>
 	Object SortedDynamicVector<Object>::getFront()
@@ -347,7 +379,9 @@ namespace Containers
 
 	/*
 		Get the last element in the vector
-		PRECOND: Vector is valid (nonempty)
+		@PRECOND: Vector is valid (nonempty)
+		@POSTCOND:
+			Return: Object contained at back
 	*/
 	template <typename Object>
 	Object SortedDynamicVector<Object>::getBack()
@@ -358,7 +392,9 @@ namespace Containers
 	/*
 		Add element in the vector (SORTED ASCENDING)
 		Data - Element to be added in the vector
-		PRECOND: Data is an object of 'Object' type (defined at declaration)
+		@PRECOND: Data is an object of 'Object' type (defined at declaration)
+		@POSTCOND:
+			Dynamic Vector now contains 'Data'
 	*/
 	template <typename Object>
 	void SortedDynamicVector<Object>::add(const Object& Data)
@@ -380,7 +416,9 @@ namespace Containers
 	/*
 		Remove element from list at 'Index'
 		Index - The list element position
-		PRECOND: Index points between 0 and count
+		@PRECOND: Index points between 0 and count, Vector is valid (nonempty)
+		@POSTCOND:
+			Object at index 'Index' is now removed
 	*/
 	template <typename Object>
 	void SortedDynamicVector<Object>::removeAtIndex(const int& Index)
@@ -391,6 +429,9 @@ namespace Containers
 
 	/*
 		Remove front element
+		@PRECOND: Vector is valid (nonempty)
+		@POSTCOND:
+			Object at index '0' is now removed
 	*/
 	template <typename Object>
 	void SortedDynamicVector<Object>::removeFront()
@@ -401,6 +442,9 @@ namespace Containers
 
 	/*
 		Remove back element
+		@PRECOND: Vector is valid (nonempty)
+		@POSTCOND:
+			Object at index 'count_ - 1' is now removed
 	*/
 	template <typename Object>
 	void SortedDynamicVector<Object>::removeBack()
@@ -411,6 +455,10 @@ namespace Containers
 	/*
 		Check if the vector contains 'Data'
 		Data - Data to be checked if it exists
+		@PRECOND: Data is an object of 'Object' type (defined at declaration) 
+		@POSTCOND
+			Return: True - if it exists
+			Return: False - otherwise
 	*/
 	template <typename Object>
 	bool SortedDynamicVector<Object>::contains(const Object& Data)
@@ -427,7 +475,8 @@ namespace Containers
 
 	/*
 		Clears the list
-		POSTCOND: this->count_ = 0;
+		@PRECOND: None
+		@POSTCOND: this->count_ = 0;
 	*/
 	template <typename Object>
 	void SortedDynamicVector<Object>::clear()
@@ -440,6 +489,9 @@ namespace Containers
 
 	/*
 		Returns the node count (this->count_)
+		@PRECOND: None
+		@POSTCOND:
+			Return: count_ (element count in vector)
 	*/
 	template <typename Object>
 	int SortedDynamicVector<Object>::size()
@@ -449,6 +501,9 @@ namespace Containers
 
 	/*
 		Returns an Iterator to the beginning of the vector
+		@PRECOND: None
+		@POSTCOND:
+			Return: New iterator at beginning of vector
 	*/
 	template <typename Object>
 	typename SortedDynamicVector<Object>::Iterator SortedDynamicVector<Object>::begin()
@@ -460,6 +515,9 @@ namespace Containers
 
 	/*
 		Returns an Iterator to the end of the vector
+		@PRECOND: None
+		@POSTCOND:
+			Return: New iterator at end of vector
 	*/
 	template <typename Object>
 	typename SortedDynamicVector<Object>::Iterator SortedDynamicVector<Object>::end()
