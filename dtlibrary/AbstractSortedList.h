@@ -1,11 +1,7 @@
-#ifndef _ABSTRACTSORTEDLIST_H_
-# define _ABSTRACTSORTEDLIST_H_
-
-/*
 /**************************************************************************************************\
 | Abstract Sorted List implementation                                                              |
 |**************************************************************************************************|
-| Main methods                                                                                     |
+| Main methods:                                                                                    |
 |   - getAtIndex (index given)                                                                     |
 |   - add (insert sorted)                                                                          |
 |   - removeAtIndex (index given)                                                                  |
@@ -16,11 +12,14 @@
 | General rules used:                                                                              |
 |   - All parameter variables start with capital letter (e.g 'Node').                              |
 |   - Private or Protected variables have an underscore suffix.                                    |
-|   - Operators, Constructors, Destructors, Setters and Getters are not specified                  |
+|   - Some Operators, Constructors, Destructors, Setters or Getters are not specified              |
 |   as the code itself is easy to understand.                                                      |
 |**************************************************************************************************|
 | Written by Ratiu Razvan - Marian, Group 916, Faculty of Computer Science, English specialization |
 \**************************************************************************************************/
+
+#ifndef _ABSTRACTSORTEDLIST_H_
+# define _ABSTRACTSORTEDLIST_H_
 
 template <typename T>
 class AbstractSortedList

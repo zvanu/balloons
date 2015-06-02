@@ -1,3 +1,33 @@
+/**************************************************************************************************\
+| Balloon implementation                                                                           |
+|**************************************************************************************************|
+| Main methods:                                                                                    |
+|   - operator=                                                                                    |
+|   - operator==                                                                                   |
+|   - operator<                                                                                    |
+|   - operator>                                                                                    |
+|   - operator<= (not used in solution)                                                            |
+|   - operator>= (not used in solution)                                                            |
+|   - operator<< (for printing)								                                       |
+|   - operator<< (for printing)								                                       |
+|   - operator<< (for printing)								                                       |
+|   - operator<< (for printing)								                                       |
+|   - setXCoordStart (setter)                                                                      |
+|   - setXCoordEnd (setter)							                                               |
+|   - setArrowStatus (setter)							                                           |
+|   - getXCoordStart (getter)							                                           |
+|   - getXCoordEnd (getter)							                                               |
+|   - getArrowStatus (getter)							                                           |
+|**************************************************************************************************|
+| General rules used:                                                                              |
+|   - All parameter variables start with capital letter (e.g 'Node').                              |
+|   - Private or Protected variables have an underscore suffix.                                    |
+|   - Some Operators, Constructors, Destructors, Setters or Getters are not specified              |
+|   as the code itself is easy to understand.                                                      |
+|**************************************************************************************************|
+| Written by Ratiu Razvan - Marian, Group 916, Faculty of Computer Science, English specialization |
+\**************************************************************************************************/
+
 #ifndef _BALLOON_H_
 # define _BALLOON_H_
 
@@ -6,14 +36,14 @@
 class Balloon
 {
 private:
-	float	xCoordStart;
-	float	xCoordEnd;
-	bool	hasArrow;
+	float	xCoordStart_;
+	float	xCoordEnd_;
+	bool	hasArrow_;
 
 public:
 	/* Constructors */
 	Balloon();
-	Balloon(float xCoordStart, float xCoordEnd, bool hasArrow);
+	Balloon(float XCoordStart, float XCoordEnd, bool HasArrow);
 	/* Destructors */
 	~Balloon();
 	/* Operators */

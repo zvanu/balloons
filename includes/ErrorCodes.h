@@ -1,0 +1,7 @@
+#ifndef _ERRORCODES_H_
+# define _ERRORCODES_H_
+
+# define ERR_STATUS_INVALID_DATASET 1
+# define ERR_STATUS_INVALID_PARAMETER 2
+
+#endif //_ERRORCODES_H_

@@ -1,10 +1,7 @@
-#ifndef _ABSTRACTSORTEDLISTITERATOR_H_
-# define _ABSTRACTSORTEDLISTITERATOR_H_
-
 /**************************************************************************************************\
 | Abstract Sorted List Iterator FWD implementation                                                 |
 |**************************************************************************************************|
-| Methods                                                                                          |
+| Methods:                                                                                         |
 |   - isValid                                                                                      |
 |   - hasNext                                                                                      |
 |   - operator++ (next)                                                                            |
@@ -13,11 +10,14 @@
 | General rules used:                                                                              |
 |   - All parameter variables start with capital letter (e.g 'Node').                              |
 |   - Private or Protected variables have an underscore suffix.                                    |
-|   - Operators, Constructors, Destructors, Setters and Getters are not specified                  |
+|   - Some Operators, Constructors, Destructors, Setters or Getters are not specified              |
 |   as the code itself is easy to understand.                                                      |
 |**************************************************************************************************|
 | Written by Ratiu Razvan - Marian, Group 916, Faculty of Computer Science, English specialization |
 \**************************************************************************************************/
+
+#ifndef _ABSTRACTSORTEDLISTITERATOR_H_
+# define _ABSTRACTSORTEDLISTITERATOR_H_
 
 template <typename T, typename O>
 class AbstractSortedListIterator
